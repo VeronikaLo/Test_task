@@ -45,20 +45,31 @@ class LocationSection extends StatelessWidget {
     return Container(
       height: 50,
       margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.only(right: 5 ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
             Text("Location", style: TextStyle(fontSize: 12, color: grey ),),
-            const SizedBox(height: 8,),
-            Row(children:  [ 
-              const Text("Jakarta", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color:Colors.black)),
-              const SizedBox( width: 11,),
-              Image.asset("assets/icons/down.png"),
-            ],) 
+            Expanded(  //Dropdown, only for demonstration!
+              child: DropdownButton(
+              value: "Jakarta" ,
+              icon: Image.asset("assets/icons/down.png"),
+              items: <String>["Jakarta", "Berlin", "Paris"].map(( String value) => DropdownMenuItem(
+                child: Row(
+                  children: [
+                    Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color:Colors.black) ),
+                    const SizedBox(width: 11,)],),
+                value: value,
+              )).toList(),
+              onChanged: null,
+              underline: Container(),),
+            ), 
           ],),
+          
           Stack(
             children:[
               IconButton(
